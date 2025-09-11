@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Calendario</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: white; }
+    .header { background-color: #1e1e1e; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .back-btn { font-size: 1.4em; color: #FFD700; background: none; border: none; cursor: pointer; }
+    .month-title { font-size: 1.2em; font-weight: 600; }
+    .nav-btns { display: flex; gap: 15px; }
+    .calendar { width: 100%; margin: 20px 0; border-collapse: collapse; }
+    .calendar th { color: #FFD700; padding: 10px; font-weight: 600; font-size: 0.9em; }
+    .calendar td { 
+      height: 40px; 
+      text-align: center; 
+      font-size: 0.9em; 
+      border: 1px solid #333; 
+      position: relative; 
+    }
+    .day-number { display: block; color: #ccc; }
+    .event { display: block; width: 8px; height: 8px; border-radius: 50%; margin: 2px auto 0; }
+    .tirada { background-color: #FFD700; }
+    .series { background-color: #4285F4; }
+    .carrera { background-color: #EA4335; }
+    .descanso { background-color: #34A853; }
+    .lesion { background-color: #FBBC05; }
+    .objetivo { background-color: #AA46BB; }
+    .legend { display: flex; gap: 15px; justify-content: center; font-size: 0.8em; color: #ccc; margin: 20px; }
+    .legend-item { display: flex; align-items: center; gap: 4px; }
+    .legend-color { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .bottom-nav { display: flex; justify-content: space-around; background-color: #1e1e1e; padding: 15px 0; position: fixed; bottom: 0; width: 100%; border-top: 1px solid #333; z-index: 999; }
+    .nav-item { color: #aaa; font-size: 0.9em; text-align: center; }
+    .nav-item.active { color: #FFD700; }
+    .nav-icon { width: 24px; height: 24px; margin-bottom: 4px; }
+    .nav-item a { color: inherit; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <div class="month-title">Septiembre 2024</div>
+    <div class="nav-btns">
+      <button onclick="prevMonth()">◀</button>
+      <button onclick="nextMonth()">▶</button>
+    </div>
+  </div>
+
+  <!-- Calendario -->
+  <table class="calendar">
+    <thead>
+      <tr>
+        <th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th><th>Vie</th><th>Sáb</th><th>Dom</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td><td></td><td></td><td></td><td>1</td>
+        <td><span class="day-number">2</span><span class="event carrera"></span></td>
+        <td><span class="day-number">3</span></td>
+      </tr>
+      <tr>
+        <td><span class="day-number">4</span></td>
+        <td><span class="day-number">5</span></td>
+        <td><span class="day-number">6</span></td>
+        <td><span class="day-number">7</span><span class="event series"></span></td>
+        <td><span class="day-number">8</span></td>
+        <td><span class="day-number">9</span></td>
+        <td><span class="day-number">10</span></td>
+      </tr>
+      <tr>
+        <td><span class="day-number">11</span></td>
+        <td><span class="day-number">12</span></td>
+        <td><span class="day-number">13</span></td>
+        <td><span class="day-number">14</span></td>
+        <td><span class="day-number">15</span></td>
+        <td><span class="day-number">16</span><span class="event tirada"></span></td>
+        <td><span class="day-number">17</span></td>
+      </tr>
+      <tr>
+        <td><span class="day-number">18</span></td>
+        <td><span class="day-number">19</span></td>
+        <td><span class="day-number">20</span></td>
+        <td><span class="day-number">21</span></td>
+        <td><span class="day-number">22</span></td>
+        <td><span class="day-number">23</span></td>
+        <td><span class="day-number">24</span></td>
+      </tr>
+      <tr>
+        <td><span class="day-number">25</span></td>
+        <td><span class="day-number">26</span></td>
+        <td><span class="day-number">27</span></td>
+        <td><span class="day-number">28</span></td>
+        <td><span class="day-number">29</span></td>
+        <td><span class="day-number">30</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Leyenda -->
+  <div class="legend">
+    <div class="legend-item"><span class="legend-color" style="background-color: #FFD700;"></span> Tirada larga</div>
+    <div class="legend-item"><span class="legend-color" style="background-color: #4285F4;"></span> Series</div>
+    <div class="legend-item"><span class="legend-color" style="background-color: #EA4335;"></span> Carrera</div>
+    <div class="legend-item"><span class="legend-color" style="background-color: #34A853;"></span> Descanso</div>
+    <div class="legend-item"><span class="legend-color" style="background-color: #FBBC05;"></span> Lesión</div>
+    <div class="legend-item"><span class="legend-color" style="background-color: #AA46BB;"></span> Objetivo</div>
+  </div>
+
+  <!-- Barra de navegación -->
+  <div class="bottom-nav">
+    <a href="inicio.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" class="nav-icon">
+      Inicio
+    </a>
+    <a href="calendario.html" class="nav-item active">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/calendar.png" class="nav-icon">
+      Calendario
+    </a>
+    <a href="perfil.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/user.png" class="nav-icon">
+      Perfil
+    </a>
+  </div>
+
+</body>
+</html>

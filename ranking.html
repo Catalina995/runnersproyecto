@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Ranking</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .header {
+      background-color: #1e1e1e;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back-btn {
+      font-size: 1.4em;
+      color: #FFD700;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .page-title {
+      font-size: 1.2em;
+      margin: 0;
+    }
+
+    .filter {
+      background-color: #FFD700;
+      color: #121212;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+
+    .ranking-list {
+      padding: 20px;
+    }
+
+    .rank-item {
+      display: flex;
+      align-items: center;
+      background-color: #1e1e1e;
+      margin-bottom: 12px;
+      padding: 12px;
+      border-radius: 10px;
+      gap: 12px;
+    }
+
+    .rank-pos {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #FFD700;
+      width: 30px;
+      text-align: center;
+    }
+
+    .rank-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #FFD700;
+    }
+
+    .rank-info {
+      flex: 1;
+    }
+
+    .rank-name {
+      font-weight: 600;
+    }
+
+    .rank-stats {
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      background-color: #1e1e1e;
+      padding: 15px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #333;
+    }
+
+    .nav-item {
+      color: #aaa;
+      font-size: 0.9em;
+      text-align: center;
+    }
+
+    .nav-item.active {
+      color: #FFD700;
+    }
+
+    .nav-icon {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .filter {
+        align-self: flex-end;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .ranking-list {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Ranking</h1>
+    <button class="filter">Semana</button>
+  </div>
+
+  <!-- Lista de ranking -->
+  <div class="ranking-list">
+    <div class="rank-item">
+      <div class="rank-pos">1</div>
+      <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=FFD700&color=121212" class="rank-avatar">
+      <div class="rank-info">
+        <div class="rank-name">Juan Pérez</div>
+        <div class="rank-stats">48.2 km | 4 sesiones</div>
+      </div>
+    </div>
+
+    <div class="rank-item">
+      <div class="rank-pos">2</div>
+      <img src="https://ui-avatars.com/api/?name=Ana+López&background=FFD700&color=121212" class="rank-avatar">
+      <div class="rank-info">
+        <div class="rank-name">Ana López</div>
+        <div class="rank-stats">45.7 km | 5 sesiones</div>
+      </div>
+    </div>
+
+    <div class="rank-item">
+      <div class="rank-pos">3</div>
+      <img src="https://ui-avatars.com/api/?name=Luis+Gómez&background=FFD700&color=121212" class="rank-avatar">
+      <div class="rank-info">
+        <div class="rank-name">Luis Gómez</div>
+        <div class="rank-stats">42.3 km | 4 sesiones</div>
+      </div>
+    </div>
+
+    <div class="rank-item">
+      <div class="rank-pos">4</div>
+      <img src="https://ui-avatars.com/api/?name=Catalina+Manríquez&background=FFD700&color=121212" class="rank-avatar">
+      <div class="rank-info">
+        <div class="rank-name">Tú</div>
+        <div class="rank-stats">42.3 km | 4 sesiones</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra de navegación -->
+  <div class="bottom-nav">
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" class="nav-icon">
+      Inicio
+    </div>
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/calendar.png" class="nav-icon">
+      Calendario
+    </div>
+    <div class="nav-item active">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/news.png" class="nav-icon">
+      Feed
+    </div>
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/user.png" class="nav-icon">
+      Perfil
+    </div>
+  </div>
+
+</body>
+</html>

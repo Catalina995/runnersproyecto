@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Elegir días</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: white; }
+    .header { background-color: #1e1e1e; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .back-btn { font-size: 1.4em; color: #FFD700; background: none; border: none; cursor: pointer; }
+    .page-title { font-size: 1.2em; }
+    .dias-container { padding: 20px; }
+    .dia-item { background-color: #1e1e1e; padding: 16px; margin-bottom: 12px; border-radius: 8px; }
+    .dia-header { font-weight: 600; color: #FFD700; }
+    .check-container { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+    .btn-save { 
+      background-color: #FFD700; 
+      color: #121212; 
+      border: none; 
+      padding: 12px; 
+      border-radius: 8px; 
+      font-weight: bold; 
+      font-size: 1em; 
+      cursor: pointer; 
+      display: block; 
+      width: 100%; 
+      margin-top: 20px; 
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Elegir días</h1>
+  </div>
+
+  <!-- Días -->
+  <div class="dias-container">
+    <div class="dia-item">
+      <div class="dia-header">Lunes 9/09</div>
+      <div class="check-container">
+        <input type="checkbox" id="lunes" checked>
+        <label for="lunes">Incluir en el plan</label>
+      </div>
+    </div>
+
+    <div class="dia-item">
+      <div class="dia-header">Martes 10/09</div>
+      <div class="check-container">
+        <input type="checkbox" id="martes" checked>
+        <label for="martes">Incluir en el plan</label>
+      </div>
+    </div>
+
+    <div class="dia-item">
+      <div class="dia-header">Miércoles 11/09</div>
+      <div class="check-container">
+        <input type="checkbox" id="miercoles">
+        <label for="miercoles">Incluir en el plan</label>
+      </div>
+    </div>
+
+    <div class="dia-item">
+      <div class="dia-header">Jueves 12/09</div>
+      <div class="check-container">
+        <input type="checkbox" id="jueves" checked>
+        <label for="jueves">Incluir en el plan</label>
+      </div>
+    </div>
+
+    <div class="dia-item">
+      <div class="dia-header">Viernes 13/09</div>
+      <div class="check-container">
+        <input type="checkbox" id="viernes">
+        <label for="viernes">Incluir en el plan</label>
+      </div>
+    </div>
+
+    <div class="dia-item">
+      <div class="dia-header">Sábado 14/09</div>
+      <div class="check-container">
+        <input type="checkbox" id="sabado" checked>
+        <label for="sabado">Incluir en el plan</label>
+      </div>
+    </div>
+
+    <div class="dia-item">
+      <div class="dia-header">Domingo 15/09</div>
+      <div class="check-container">
+        <input type="checkbox" id="domingo">
+        <label for="domingo">Incluir en el plan</label>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-save" onclick="location.href='crear-plan-detalle.html'">Guardar y definir detalles</button>
+
+</body>
+</html>

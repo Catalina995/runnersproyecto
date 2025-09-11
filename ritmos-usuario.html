@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Ritmos del grupo</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: white; min-height: 100vh; }
+    .header { background-color: #1e1e1e; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .back-btn { font-size: 1.4em; color: #FFD700; background: none; border: none; cursor: pointer; }
+    .page-title { font-size: 1.2em; }
+    .controls { display: flex; gap: 10px; flex: 1; flex-wrap: wrap; }
+    .search-input { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #333; background-color: #1e1e1e; color: white; }
+    .btn-add { background-color: #FFD700; color: #121212; border: none; padding: 10px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+    .table-container { padding: 20px; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px; text-align: left; border-bottom: 1px solid #333; }
+    th { background-color: #000; color: #FFD700; font-weight: bold; }
+    tr:nth-child(even) { background-color: #1e1e1e; }
+    tr:nth-child(odd) { background-color: #121212; }
+    .row-ul { background-color: #FFD700; color: #121212; font-weight: bold; }
+    .row-ca { background-color: #FF5722; color: white; font-weight: bold; }
+    .row-can { background-color: #F44336; color: white; font-weight: bold; }
+    .btn-edit { background-color: transparent; color: #FFD700; border: 1px solid #FFD700; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.9em; margin-left: 10px; }
+    .btn-save { background-color: #34A853; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.9em; }
+    .input-rhythm { width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #333; background-color: #1e1e1e; color: white; text-align: center; font-size: 0.9em; }
+
+    /* Modal para agregar */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; }
+    .modal-content { background-color: #1e1e1e; padding: 20px; border-radius: 12px; width: 90%; max-width: 500px; }
+    .modal h3 { color: #FFD700; margin-bottom: 15px; }
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; color: #ccc; margin-bottom: 6px; }
+    .form-group input[type="text"] { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #333; background-color: #1e1e1e; color: white; }
+    .modal-actions { display: flex; gap: 10px; margin-top: 15px; }
+    .modal-actions button { padding: 10px; border-radius: 6px; cursor: pointer; }
+    .btn-cancel { background-color: #333; color: white; flex: 1; }
+    .btn-confirm { background-color: #FFD700; color: #121212; font-weight: bold; flex: 1; }
+
+    /* Botón de acción principal */
+    .btn-save-all { 
+      background-color: #34A853; 
+      color: white; 
+      border: none; 
+      padding: 12px; 
+      border-radius: 8px; 
+      font-weight: bold; 
+      font-size: 1em; 
+      cursor: pointer; 
+      display: block; 
+      width: calc(100% - 40px); 
+      margin: 20px auto; 
+      text-align: center; 
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Ritmos del grupo: 10km B</h1>
+    <div class="controls">
+      <input type="text" id="searchInput" class="search-input" placeholder="Buscar corredor..." onkeyup="filterTable()">
+      <button class="btn-add" onclick="openAddModal()">+ Agregar corredor</button>
+    </div>
+  </div>
+
+  <!-- Tabla de ritmos -->
+  <div class="table-container">
+    <table id="ritmosTable">
+      <thead>
+        <tr>
+          <th>Nombre:</th>
+          <th>Catalina Manríquez</th>
+          <th>Angelo Holbut</th>
+          <th>Marco Ampuero</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Fecha:</td>
+          <td><span class="date-display">jun-2025</span><input type="text" class="edit-input date-input" value="jun-2025" style="display:none;"></td>
+          <td><span class="date-display">jun-2025</span><input type="text" class="edit-input date-input" value="jun-2025" style="display:none;"></td>
+          <td><span class="date-display">jun-2025</span><input type="text" class="edit-input date-input" value="jun-2025" style="display:none;"></td>
+        </tr>
+        <tr>
+          <td>Distancia:</td>
+          <td><span class="data-display">3000</span><input type="text" class="edit-input data-input" value="3000" style="display:none;"></td>
+          <td><span class="data-display">3000</span><input type="text" class="edit-input data-input" value="3000" style="display:none;"></td>
+          <td><span class="data-display">3000</span><input type="text" class="edit-input data-input" value="3000" style="display:none;"></td>
+        </tr>
+        <tr>
+          <td>Tiempo:</td>
+          <td><span class="data-display">13:27</span><input type="text" class="edit-input data-input" value="13:27" style="display:none;"></td>
+          <td><span class="data-display">14:36</span><input type="text" class="edit-input data-input" value="14:36" style="display:none;"></td>
+          <td><span class="data-display">12:34</span><input type="text" class="edit-input data-input" value="12:34" style="display:none;"></td>
+        </tr>
+        <tr>
+          <td>Paso Vo2 Max:</td>
+          <td><span class="data-display">4:30</span><input type="text" class="edit-input data-input" value="4:30" style="display:none;"></td>
+          <td><span class="data-display">4:52</span><input type="text" class="edit-input data-input" value="4:52" style="display:none;"></td>
+          <td><span class="data-display">4:12</span><input type="text" class="edit-input data-input" value="4:12" style="display:none;"></td>
+        </tr>
+        <tr>
+          <td>Vo2 Max:</td>
+          <td><span class="data-display">41,6</span><input type="text" class="edit-input data-input" value="41,6" style="display:none;"></td>
+          <td><span class="data-display">37,9</span><input type="text" class="edit-input data-input" value="37,9" style="display:none;"></td>
+          <td><span class="data-display">45,1</span><input type="text" class="edit-input data-input" value="45,1" style="display:none;"></td>
+        </tr>
+        <tr>
+          <td>REG (REGENERATIVO)</td>
+          <td><span class="data-display">6:46-6:17</span><input type="text" class="edit-input data-input" value="6:46-6:17" style="display:none;"></td>
+          <td><span class="data-display">7:16-6:46</span><input type="text" class="edit-input data-input" value="7:16-6:46" style="display:none;"></td>
+          <td><span class="data-display">6:22-5:54</span><input type="text" class="edit-input data-input" value="6:22-5:54" style="display:none;"></td>
+        </tr>
+        <tr>
+          <td>AERÓBICO 1 (R1)</td>
+          <td><span class="data-display">6:17-5:53</span><input type="text" class="edit-input data-input" value="6:17-5:53" style="display:none;"></td>
+          <td><span class="data-display">6:46-6:19</span><input type="text" class="edit-input data-input" value="6:46-6:19" style="display:none;"></td>
+          <td><span class="data-display">5:54-5:31</span><input type="text" class="edit-input data-input" value="5:54-5:31" style="display:none;"></td>
+        </tr>
+        <tr>
+          <td>AERÓBICO 2 (R2)</td>
+          <td><span class="data-display">5:53-5:29</span><input type="text" class="edit-input data-input" value="5:53-5:29" style="display:none;"></td>
+          <td><span class="data-display">6:19-5:56</span><input type="text" class="edit-input data-input" value="6:19-5:56" style="display:none;"></td>
+          <td><span class="data-display">5:31-5:08</span><input type="text" class="edit-input data-input" value="5:31-5:08" style="display:none;"></td>
+        </tr>
+        <tr>
+          <td>AERÓBICO 3 (R3)</td>
+          <td><span class="data-display">5:29-5:05</span><input type="text" class="edit-input data-input" value="5:29-5:05" style="display:none;"></td>
+          <td><span class="data-display">5:56-5:30</span><input type="text" class="edit-input data-input" value="5:56-5:30" style="display:none;"></td>
+          <td><span class="data-display">5:08-4:45</span><input type="text" class="edit-input data-input" value="5:08-4:45" style="display:none;"></td>
+        </tr>
+        <tr class="row-ul">
+          <td>UMBRAL LÁCTICO (UL)</td>
+          <td><span class="data-display">5:05-4:48</span><input type="text" class="edit-input data-input" value="5:05-4:48" style="display:none;"></td>
+          <td><span class="data-display">5:30-5:11</span><input type="text" class="edit-input data-input" value="5:30-5:11" style="display:none;"></td>
+          <td><span class="data-display">4:45-4:29</span><input type="text" class="edit-input data-input" value="4:45-4:29" style="display:none;"></td>
+        </tr>
+        <tr class="row-ca">
+          <td>CAPACIDAD AERÓBICA VO2MAX (CA)</td>
+          <td><span class="data-display">4:48-4:30</span><input type="text" class="edit-input data-input" value="4:48-4:30" style="display:none;"></td>
+          <td><span class="data-display">5:11-4:52</span><input type="text" class="edit-input data-input" value="5:11-4:52" style="display:none;"></td>
+          <td><span class="data-display">4:29-4:12</span><input type="text" class="edit-input data-input" value="4:29-4:12" style="display:none;"></td>
+        </tr>
+        <tr class="row-can">
+          <td>CAPACIDAD SUPRA VO2MAX (CAN)</td>
+          <td><span class="data-display">4:30-4:00</span><input type="text" class="edit-input data-input" value="4:30-4:00" style="display:none;"></td>
+          <td><span class="data-display">4:52-4:22</span><input type="text" class="edit-input data-input" value="4:52-4:22" style="display:none;"></td>
+          <td><span class="data-display">4:12-3:42</span><input type="text" class="edit-input data-input" value="4:12-3:42" style="display:none;"></td>
+        </tr>
+        <tr>
+          <td colspan="4" style="text-align: right;">
+            <button class="btn-edit" onclick="enableEdit(this)">Editar</button>
+            <button class="btn-save" onclick="saveRow(this)" style="display:none;">Guardar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Botón para guardar todo -->
+  <button class="btn-save-all" onclick="guardarTodo()">Guardar todos los cambios</button>
+
+  <!-- Modal para agregar nuevo corredor -->
+  <div id="addModal" class="modal">
+    <div class="modal-content">
+      <h3>Agregar nuevo corredor</h3>
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" id="nuevoNombre" placeholder="Ej: Juan Pérez">
+      </div>
+      <div class="form-group">
+        <label>R2</label>
+        <input type="text" id="nuevoR2" placeholder="5:53-5:29">
+      </div>
+      <div class="form-group">
+        <label>UL</label>
+        <input type="text" id="nuevoUL" placeholder="5:05-4:48">
+      </div>
+      <div class="modal-actions">
+        <button onclick="closeAddModal()">Cancelar</button>
+        <button onclick="agregarCorredor()" style="background-color: #FFD700; color: #121212;">Agregar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Filtrar tabla por nombre
+    function filterTable() {
+      const input = document.getElementById("searchInput");
+      const filter = input.value.toLowerCase();
+      const table = document.getElementById("ritmosTable");
+      const headers = table.querySelectorAll("thead th");
+      
+      headers.forEach((th, index) => {
+        if (index > 0 && th.textContent.toLowerCase().includes(filter)) {
+          th.style.display = "";
+        } else if (index > 0) {
+          th.style.display = "none";
+        }
+      });
+    }
+
+    // Activar modo edición
+    function enableEdit(button) {
+      const row = button.closest("tbody");
+      const spans = row.querySelectorAll(".data-display, .date-display");
+      const inputs = row.querySelectorAll(".edit-input");
+
+      spans.forEach(s => s.style.display = "none");
+      inputs.forEach(i => i.style.display = "inline-block");
+
+      button.style.display = "none";
+      row.querySelector(".btn-save").style.display = "inline-block";
+    }
+
+    // Guardar fila
+    function saveRow(button) {
+      const row = button.closest("tbody");
+      const spans = row.querySelectorAll(".data-display, .date-display");
+      const inputs = row.querySelectorAll(".edit-input");
+
+      inputs.forEach((input, index) => {
+        spans[index].textContent = input.value;
+      });
+
+      spans.forEach(s => s.style.display = "inline");
+      inputs.forEach(i => i.style.display = "none");
+
+      button.style.display = "none";
+      row.querySelector(".btn-edit").style.display = "inline-block";
+
+      alert("✅ Cambios guardados temporalmente (se guardará al final)");
+    }
+
+    // Abrir modal de agregar
+    function openAddModal() {
+      document.getElementById("addModal").style.display = "flex";
+    }
+
+    // Cerrar modal
+    function closeAddModal() {
+      document.getElementById("addModal").style.display = "none";
+    }
+
+    // Agregar nuevo corredor
+    function agregarCorredor() {
+      const nombre = document.getElementById("nuevoNombre").value.trim();
+      const r2 = document.getElementById("nuevoR2").value || "-";
+      const ul = document.getElementById("nuevoUL").value || "-";
+
+      if (!nombre) {
+        alert("Por favor ingresa un nombre");
+        return;
+      }
+
+      const table = document.getElementById("ritmosTable");
+      const thead = table.querySelector("thead tr");
+      const tbody = table.querySelector("tbody");
+
+      // Agregar encabezado
+      const th = document.createElement("th");
+      th.textContent = nombre;
+      thead.appendChild(th);
+
+      // Agregar celdas
+      const rows = tbody.querySelectorAll("tr");
+      rows.forEach((tr, index) => {
+        const td = document.createElement("td");
+        if (index === 0) {
+          td.innerHTML = `<span class="date-display">jun-2025</span><input class="edit-input date-input" value="jun-2025" style="display:none;">`;
+        } else if (["REG", "R1", "R2", "R3", "UL", "CA", "CAN"].some(t => tr.querySelector("td").textContent.includes(t))) {
+          let val = "-";
+          if (tr.querySelector("td").textContent.includes("R2")) val = r2;
+          if (tr.querySelector("td").textContent.includes("UL")) val = ul;
+          td.innerHTML = `<span class="data-display">${val}</span><input class="edit-input data-input" value="${val}" style="display:none;">`;
+        } else {
+          td.innerHTML = `<span class="data-display">-</span><input class="edit-input data-input" value="-" style="display:none;">`;
+        }
+        tr.appendChild(td);
+      });
+
+      closeAddModal();
+      document.getElementById("nuevoNombre").value = "";
+    }
+
+    // Guardar todo en localStorage (simulación)
+    function guardarTodo() {
+      alert("✅ Todos los cambios fueron guardados correctamente");
+      // Aquí podrías enviar a backend o guardar en localStorage
+      // Ej: localStorage.setItem('ritmosGrupo', JSON.stringify(datos));
+    }
+  </script>
+
+</body>
+</html>

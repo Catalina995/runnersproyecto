@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Notificaciones</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .header {
+      background-color: #1e1e1e;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back-btn {
+      font-size: 1.4em;
+      color: #FFD700;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .page-title {
+      font-size: 1.2em;
+      margin: 0;
+    }
+
+    .notifications-list {
+      padding: 20px;
+    }
+
+    .notification-item {
+      background-color: #1e1e1e;
+      margin-bottom: 12px;
+      padding: 16px;
+      border-radius: 10px;
+      border-left: 4px solid #FFD700;
+    }
+
+    .notification-unread {
+      background-color: #252525;
+      border-left-color: #FFD700;
+    }
+
+    .notification-title {
+      font-weight: 600;
+      color: #FFD700;
+      margin-bottom: 6px;
+    }
+
+    .notification-text {
+      color: #ccc;
+      font-size: 0.95em;
+      margin-bottom: 6px;
+    }
+
+    .notification-date {
+      font-size: 0.85em;
+      color: #777;
+    }
+
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      background-color: #1e1e1e;
+      padding: 15px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #333;
+    }
+
+    .nav-item {
+      color: #aaa;
+      font-size: 0.9em;
+      text-align: center;
+    }
+
+    .nav-item.active {
+      color: #FFD700;
+    }
+
+    .nav-icon {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Notificaciones</h1>
+  </div>
+
+  <!-- Lista de notificaciones -->
+  <div class="notifications-list">
+    <!-- Notificación 1 -->
+    <div class="notification-item notification-unread">
+      <div class="notification-title">Plan publicado</div>
+      <div class="notification-text">Tu plan para la semana 36 está disponible. ¡Revisa tu calendario!</div>
+      <div class="notification-date">Hoy, 08:15</div>
+    </div>
+
+    <!-- Notificación 2 -->
+    <div class="notification-item">
+      <div class="notification-title">Bienvenido a Kinerunners</div>
+      <div class="notification-text">Tu cuenta ha sido aprobada. ¡Listo para empezar!</div>
+      <div class="notification-date">10/09/2025</div>
+    </div>
+
+    <!-- Notificación 3 -->
+    <div class="notification-item">
+      <div class="notification-title">Ritmos actualizados</div>
+      <div class="notification-text">Tu ritmo R2 fue actualizado para el grupo 10K A.</div>
+      <div class="notification-date">09/09/2025</div>
+    </div>
+  </div>
+
+  <!-- Barra de navegación -->
+  <div class="bottom-nav">
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" class="nav-icon">
+      Inicio
+    </div>
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/calendar.png" class="nav-icon">
+      Calendario
+    </div>
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/news.png" class="nav-icon">
+      Feed
+    </div>
+    <div class="nav-item active">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/bell.png" class="nav-icon">
+      Notificaciones
+    </div>
+  </div>
+
+</body>
+</html>

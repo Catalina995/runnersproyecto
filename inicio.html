@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Inicio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: white; min-height: 100vh; }
+    .header { background-color: #1e1e1e; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .profile-info { display: flex; align-items: center; gap: 15px; flex: 1; }
+    .profile-pic { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #FFD700; }
+    .user-info h2 { font-size: 1.1em; font-weight: 600; margin: 0; }
+    .group-tag { background-color: #FFD700; color: #121212; padding: 4px 10px; border-radius: 15px; font-size: 0.8em; font-weight: bold; }
+    .strava-status { font-size: 0.8em; color: #ccc; margin-top: 4px; }
+    .btn-admin { background-color: #FFD700; color: #121212; border: none; padding: 10px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1em; }
+    .main-card { background-color: #1e1e1e; margin: 20px; padding: 20px; border-radius: 12px; text-align: center; }
+    .main-card h3 { color: #FFD700; font-size: 1.2em; margin: 0 0 10px 0; }
+    .main-card p { color: #ccc; margin: 5px 0; font-size: 1em; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 20px 20px; }
+    .card-link { background-color: #2d2d2d; padding: 20px; border-radius: 12px; text-align: center; color: white; text-decoration: none; transition: background-color 0.3s; }
+    .card-link:hover { background-color: #3a3a3a; }
+    .card-link div { font-size: 1.5em; margin-bottom: 8px; }
+    .card-link strong { display: block; margin-top: 8px; color: #FFD700; font-size: 0.95em; }
+    .bottom-nav { display: flex; justify-content: space-around; background-color: #1e1e1e; padding: 15px 0; position: fixed; bottom: 0; width: 100%; border-top: 1px solid #333; z-index: 999; }
+    .nav-item { color: #aaa; font-size: 0.9em; text-align: center; }
+    .nav-item.active { color: #FFD700; }
+    .nav-icon { width: 24px; height: 24px; margin-bottom: 4px; }
+    .nav-item a { color: inherit; text-decoration: none; }
+    @media (max-width: 480px) {
+      .header { flex-direction: column; align-items: stretch; }
+      .profile-info { justify-content: space-between; }
+      .btn-admin { align-self: flex-end; margin-top: 10px; }
+      .main-card, .grid { margin: 15px; padding: 16px; }
+    }
+    @media (min-width: 768px) {
+      .grid { grid-template-columns: repeat(3, 1fr); max-width: 600px; margin: 0 auto 20px; }
+      .main-card { max-width: 600px; margin: 20px auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <div class="profile-info">
+      <img src="https://ui-avatars.com/api/?name=Catalina+Manríquez&background=FFD700&color=121212" alt="Foto de perfil" class="profile-pic">
+      <div class="user-info">
+        <h2>Catalina</h2>
+        <span class="group-tag">10K A</span>
+        <div class="strava-status">Strava: Conectado ✅</div>
+      </div>
+    </div>
+    <!-- Botón Admin (solo visible si es profesor o admin) -->
+    <button id="btn-admin" class="btn-admin" style="display: none;">Admin</button>
+  </div>
+
+  <!-- Tarjeta principal: Plan de hoy -->
+  <div class="main-card">
+    <h3>Plan de hoy</h3>
+    <p>8K R2 + 3×100m técnica</p>
+    <p style="color: #FFD700; font-size: 0.9em;">Martes 10/09</p>
+  </div>
+
+  <!-- Accesos rápidos -->
+  <div class="grid">
+    <a href="ver-mi-plan.html" class="card-link">
+      <div>📅</div>
+      <strong>Ver mi plan</strong>
+    </a>
+    <a href="actividad.html" class="card-link">
+      <div>🏃</div>
+      <strong>Actividad</strong>
+    </a>
+    <a href="estadisticas.html" class="card-link">
+      <div>📊</div>
+      <strong>Estadísticas</strong>
+    </a>
+    <a href="ranking.html" class="card-link">
+      <div>🏆</div>
+      <strong>Ranking</strong>
+    </a>
+    <a href="feed.html" class="card-link">
+      <div>📢</div>
+      <strong>Feed</strong>
+    </a>
+    <a href="mi-grupo.html" class="card-link">
+      <div>👥</div>
+      <strong>Mi grupo</strong>
+    </a>
+  </div>
+
+  <!-- Barra de navegación -->
+  <div class="bottom-nav">
+    <a href="inicio.html" class="nav-item active">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" class="nav-icon">
+      Inicio
+    </a>
+    <a href="calendario.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/calendar.png" class="nav-icon">
+      Calendario
+    </a>
+    <a href="perfil.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/user.png" class="nav-icon">
+      Perfil
+    </a>
+  </div>
+
+  <script>
+    // Simulación del usuario actual
+    const usuario = {
+      nombre: "Catalina",
+      grupo: "10K A",
+      rol: "profesor", // Cambia a "corredor" para probar
+      stravaConectado: true
+    };
+
+    // Mostrar datos del usuario
+    document.querySelector('.user-info h2').textContent = usuario.nombre;
+    document.querySelector('.group-tag').textContent = usuario.grupo;
+    document.querySelector('.strava-status').textContent = 
+      usuario.stravaConectado ? "Strava: Conectado ✅" : "Strava: No conectado ❌";
+
+    // Mostrar botón "Admin" si es profesor o administrador
+    const btnAdmin = document.getElementById("btn-admin");
+    if (usuario.rol === "profesor" || usuario.rol === "administrador") {
+      btnAdmin.style.display = "block";
+      btnAdmin.onclick = () => location.href = "admin.html";
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Detalle del plan</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: white; }
+    .header { background-color: #1e1e1e; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .back-btn { font-size: 1.4em; color: #FFD700; background: none; border: none; cursor: pointer; }
+    .page-title { font-size: 1.2em; }
+    .tab-container { padding: 0 20px; }
+    .tabs { display: flex; gap: 10px; margin: 20px 0; }
+    .tab { padding: 10px 15px; border-radius: 8px; background-color: #2d2d2d; cursor: pointer; }
+    .tab.active { background-color: #FFD700; color: #121212; font-weight: bold; }
+    .tab-content { display: none; padding: 20px; background-color: #1e1e1e; margin-bottom: 15px; border-radius: 8px; }
+    .tab-content.active { display: block; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; color: #ccc; margin-bottom: 6px; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background-color: #1e1e1e; color: white; }
+    .btn-actions { display: flex; gap: 10px; margin-top: 20px; }
+    .btn { padding: 10px 15px; border-radius: 8px; font-size: 0.9em; cursor: pointer; }
+    .btn-prev { background-color: #333; color: white; border: none; }
+    .btn-preview { background-color: #4285F4; color: white; border: none; }
+    .btn-publish { background-color: #34A853; color: white; border: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Detalle del plan</h1>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tab-container">
+    <div class="tabs">
+      <div class="tab active" onclick="openTab('lunes')">Lunes</div>
+      <div class="tab" onclick="openTab('martes')">Martes</div>
+      <div class="tab" onclick="openTab('jueves')">Jueves</div>
+      <div class="tab" onclick="openTab('sabado')">Sábado</div>
+    </div>
+
+    <!-- Lunes -->
+    <div id="lunes" class="tab-content active">
+      <div class="form-group">
+        <label>Tipo de entrenamiento</label>
+        <select>
+          <option>Rodaje controlado (R2)</option>
+          <option>Serie corta</option>
+          <option>Fartlek</option>
+          <option>Tirada larga</option>
+          <option>Descanso</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Objetivo</label>
+        <input type="text" value="6K + 3×100m técnica">
+      </div>
+      <div class="form-group">
+        <label>Ritmo objetivo</label>
+        <input type="text" value="R2: 5:53 min/km">
+      </div>
+    </div>
+
+    <!-- Martes -->
+    <div id="martes" class="tab-content">
+      <div class="form-group">
+        <label>Tipo de entrenamiento</label>
+        <select>
+          <option>Serie corta</option>
+          <option>Rodaje controlado (R2)</option>
+          <option>Fartlek</option>
+          <option>Tirada larga</option>
+          <option>Descanso</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Objetivo</label>
+        <input type="text" value="6×400m R3 + 200m suave">
+      </div>
+      <div class="form-group">
+        <label>Ritmo objetivo</label>
+        <input type="text" value="R3: 4:48 min/km">
+      </div>
+    </div>
+
+    <!-- Jueves -->
+    <div id="jueves" class="tab-content">
+      <div class="form-group">
+        <label>Tipo de entrenamiento</label>
+        <select>
+          <option>Tirada larga</option>
+          <option>Rodaje controlado (R2)</option>
+          <option>Serie corta</option>
+          <option>Fartlek</option>
+          <option>Descanso</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Objetivo</label>
+        <input type="text" value="12K R2">
+      </div>
+      <div class="form-group">
+        <label>Ritmo objetivo</label>
+        <input type="text" value="R2: 5:53 min/km">
+      </div>
+    </div>
+
+    <!-- Sábado -->
+    <div id="sabado" class="tab-content">
+      <div class="form-group">
+        <label>Tipo de entrenamiento</label>
+        <select>
+          <option>Carrera</option>
+          <option>Tirada larga</option>
+          <option>Fartlek</option>
+          <option>Descanso</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Objetivo</label>
+        <input type="text" value="Carrera 5K">
+      </div>
+      <div class="form-group">
+        <label>Ritmo objetivo</label>
+        <input type="text" value="R3: 4:48 min/km">
+      </div>
+    </div>
+
+    <!-- Acciones -->
+    <div class="btn-actions">
+      <button class="btn btn-prev" onclick="history.back()">← Volver</button>
+      <button class="btn btn-preview" onclick="location.href='previsualizar-plan.html'">Previsualizar</button>
+      <button class="btn btn-publish" onclick="alert('✅ Plan publicado'); location.href='inicio.html';">Publicar</button>
+    </div>
+  </div>
+
+  <script>
+    function openTab(tabName) {
+      const tabs = document.querySelectorAll('.tab');
+      const contents = document.querySelectorAll('.tab-content');
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+      document.querySelector(`.${tabName}`).classList.add('active');
+      document.getElementById(tabName).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

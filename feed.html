@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Feed</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: white;
+      min-height: 100vh;
+    }
+
+    /* Encabezado */
+    .header {
+      background-color: #1e1e1e;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back-btn {
+      font-size: 1.4em;
+      color: #FFD700;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .page-title {
+      font-size: 1.2em;
+      margin: 0;
+    }
+
+    .filter {
+      background-color: #FFD700;
+      color: #121212;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+
+    /* Lista del feed */
+    .feed-list {
+      padding: 20px;
+    }
+
+    .feed-item {
+      background-color: #1e1e1e;
+      margin-bottom: 16px;
+      padding: 16px;
+      border-radius: 12px;
+      border-left: 4px solid #FFD700;
+    }
+
+    .feed-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .feed-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #FFD700;
+    }
+
+    .feed-name {
+      font-weight: 600;
+    }
+
+    .feed-date {
+      font-size: 0.85em;
+      color: #ccc;
+    }
+
+    .feed-content {
+      margin: 8px 0;
+      color: #eee;
+    }
+
+    .feed-photo {
+      width: 100%;
+      border-radius: 8px;
+      margin: 12px 0;
+      max-height: 300px;
+      object-fit: cover;
+    }
+
+    .feed-actions {
+      display: flex;
+      gap: 15px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    .feed-actions strong {
+      color: #FFD700;
+      cursor: pointer;
+    }
+
+    /* Barra de navegación */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      background-color: #1e1e1e;
+      padding: 15px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #333;
+    }
+
+    .nav-item {
+      color: #aaa;
+      font-size: 0.9em;
+      text-align: center;
+    }
+
+    .nav-item.active {
+      color: #FFD700;
+    }
+
+    .nav-icon {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+    }
+
+    /* Ajustes móviles */
+    @media (max-width: 480px) {
+      .header {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .filter {
+        align-self: flex-end;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .feed-list {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Feed</h1>
+    <button class="filter">Mis</button>
+  </div>
+
+  <!-- Lista de publicaciones -->
+  <div class="feed-list">
+    <!-- Publicación 1 -->
+    <div class="feed-item">
+      <div class="feed-header">
+        <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=FFD700&color=121212" class="feed-avatar">
+        <div>
+          <div class="feed-name">Juan Pérez</div>
+          <div class="feed-date">Hoy, 19:30</div>
+        </div>
+      </div>
+      <div class="feed-content">
+        <p>¡Tirada larga cumplida! 18K en R2 🙌</p>
+        <img src="https://source.unsplash.com/random/600x400/?running,marathon" class="feed-photo">
+        <div class="feed-actions">
+          <strong>❤️ 12</strong>
+          <strong>💬 Comentar</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Publicación 2 -->
+    <div class="feed-item">
+      <div class="feed-header">
+        <img src="https://ui-avatars.com/api/?name=Ana+López&background=FFD700&color=121212" class="feed-avatar">
+        <div>
+          <div class="feed-name">Ana López</div>
+          <div class="feed-date">Ayer, 20:15</div>
+        </div>
+      </div>
+      <div class="feed-content">
+        <p>Tempo Run perfecto. ¡Mejoré mi ritmo! 💪</p>
+        <img src="https://source.unsplash.com/random/600x400/?running,track" class="feed-photo">
+        <div class="feed-actions">
+          <strong>❤️ 8</strong>
+          <strong>💬 Comentar</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Publicación 3 -->
+    <div class="feed-item">
+      <div class="feed-header">
+        <img src="https://ui-avatars.com/api/?name=Catalina+Manríquez&background=FFD700&color=121212" class="feed-avatar">
+        <div>
+          <div class="feed-name">Tú</div>
+          <div class="feed-date">Ayer, 07:45</div>
+        </div>
+      </div>
+      <div class="feed-content">
+        <p>¡Primer 10K del mes completado! Hoy toca R3 💛</p>
+        <div class="feed-actions">
+          <strong>❤️ 5</strong>
+          <strong>💬 Comentar</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra de navegación -->
+  <div class="bottom-nav">
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" class="nav-icon">
+      Inicio
+    </div>
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/calendar.png" class="nav-icon">
+      Calendario
+    </div>
+    <div class="nav-item active">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/news.png" class="nav-icon">
+      Feed
+    </div>
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/user.png" class="nav-icon">
+      Perfil
+    </div>
+  </div>
+
+</body>
+</html>

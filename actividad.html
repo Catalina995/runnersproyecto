@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Actividad</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: white;
+      min-height: 100vh;
+    }
+
+    /* Encabezado */
+    .header {
+      background-color: #1e1e1e;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back-btn {
+      font-size: 1.4em;
+      color: #FFD700;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .page-title {
+      font-size: 1.2em;
+      margin: 0;
+    }
+
+    .sync-btn {
+      background-color: #FFD700;
+      color: #121212;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+
+    /* Estadísticas generales */
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .stat-card {
+      background-color: #1e1e1e;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #FFD700;
+    }
+
+    .stat-label {
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    /* Lista de actividades */
+    .activities-list {
+      padding: 0 20px 20px;
+    }
+
+    .activity-item {
+      background-color: #1e1e1e;
+      margin-bottom: 15px;
+      padding: 16px;
+      border-radius: 12px;
+      border-left: 4px solid #FFD700;
+    }
+
+    .activity-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .activity-date {
+      font-weight: 600;
+      color: #FFD700;
+    }
+
+    .activity-type {
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    .activity-details {
+      margin: 8px 0;
+      color: #eee;
+    }
+
+    .activity-rhythm {
+      background-color: #2d2d2d;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.9em;
+      color: #FFD700;
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+    /* Barra de navegación */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      background-color: #1e1e1e;
+      padding: 15px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #333;
+    }
+
+    .nav-item {
+      color: #aaa;
+      font-size: 0.9em;
+      text-align: center;
+    }
+
+    .nav-item.active {
+      color: #FFD700;
+    }
+
+    .nav-icon {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+    }
+
+    /* Ajustes móviles */
+    @media (max-width: 480px) {
+      .stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .header {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .sync-btn {
+        align-self: flex-end;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .stats {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 600px;
+        margin: 20px auto;
+      }
+
+      .activities-list {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Actividad</h1>
+    <button class="sync-btn">🔄 Sincronizar</button>
+  </div>
+
+  <!-- Estadísticas -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-value">42.3</div>
+      <div class="stat-label">km esta semana</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">3:45</div>
+      <div class="stat-label">Tiempo total</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">5:48</div>
+      <div class="stat-label">Ritmo promedio</div>
+    </div>
+  </div>
+
+  <!-- Lista de actividades -->
+  <div class="activities-list">
+    <!-- Actividad 1 -->
+    <div class="activity-item">
+      <div class="activity-header">
+        <div>
+          <span class="activity-date">14/09 - Sábado</span>
+          <div class="activity-type">Rodaje controlado (R2)</div>
+        </div>
+      </div>
+      <div class="activity-details">12.1 km • 1:10:23 • 5:49 min/km</div>
+      <div class="activity-rhythm">Plan: R2 (5:53)</div>
+    </div>
+
+    <!-- Actividad 2 -->
+    <div class="activity-item">
+      <div class="activity-header">
+        <div>
+          <span class="activity-date">12/09 - Jueves</span>
+          <div class="activity-type">Tempo Run</div>
+        </div>
+      </div>
+      <div class="activity-details">7.0 km • 38:15 • 5:28 min/km</div>
+      <div class="activity-rhythm">Plan: Tempo (5:30)</div>
+    </div>
+
+    <!-- Actividad 3 -->
+    <div class="activity-item">
+      <div class="activity-header">
+        <div>
+          <span class="activity-date">10/09 - Martes</span>
+          <div class="activity-type">Series</div>
+        </div>
+      </div>
+      <div class="activity-details">8.1 km • 46:50 • 5:47 min/km</div>
+      <div class="activity-rhythm">Plan: R2 + 3×100m</div>
+    </div>
+
+    <!-- Actividad 4 -->
+    <div class="activity-item">
+      <div class="activity-header">
+        <div>
+          <span class="activity-date">9/09 - Lunes</span>
+          <div class="activity-type">Rodaje fácil (R4)</div>
+        </div>
+      </div>
+      <div class="activity-details">6.0 km • 41:30 • 6:55 min/km</div>
+      <div class="activity-rhythm">Plan: R4 (6:30)</div>
+    </div>
+  </div>
+
+  <!-- Barra de navegación -->
+  <div class="bottom-nav">
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" class="nav-icon">
+      Inicio
+    </div>
+    <div class="nav-item active">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/calendar.png" class="nav-icon">
+      Calendario
+    </div>
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/news.png" class="nav-icon">
+      Feed
+    </div>
+    <div class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/user.png" class="nav-icon">
+      Perfil
+    </div>
+  </div>
+
+</body>
+</html>

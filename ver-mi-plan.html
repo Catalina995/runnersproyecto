@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Ver mi plan</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: white; }
+    .header { background-color: #1e1e1e; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .back-btn { font-size: 1.4em; color: #FFD700; background: none; border: none; cursor: pointer; }
+    .page-title { font-size: 1.2em; }
+    .plan-container { padding: 20px; max-width: 600px; margin: 20px auto; }
+    .plan-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .plan-header h2 { color: #FFD700; }
+    .plan-week { 
+      display: grid; 
+      grid-template-columns: repeat(7, 1fr); 
+      gap: 10px; 
+      margin-bottom: 15px; 
+    }
+    .day-header { 
+      text-align: center; 
+      padding: 10px; 
+      background-color: #1e1e1e; 
+      color: #FFD700; 
+      font-weight: bold; 
+      font-size: 0.9em; 
+    }
+    .day-content { 
+      min-height: 60px; 
+      padding: 10px; 
+      background-color: #1e1e1e; 
+      border: 1px solid #333; 
+      border-radius: 6px; 
+      text-align: center; 
+      transition: background-color 0.3s; 
+    }
+    .day-content:hover { background-color: #2d2d2d; }
+    .day-content p { margin: 4px 0; font-size: 0.8em; }
+    .legend { margin-top: 20px; text-align: center; font-size: 0.8em; }
+    .legend span { margin-right: 10px; }
+    .legend span::before { content: "•"; margin-right: 4px; }
+    .legend .tirada-larga { color: #FFD700; }
+    .legend .series { color: #00BFFF; }
+    .legend .carrera { color: #FF0000; }
+    .legend .descanso { color: #00FF00; }
+    .legend .lesion { color: #FFA500; }
+    .legend .objetivo { color: #8A2BE2; }
+    .bottom-nav { display: flex; justify-content: space-around; background-color: #1e1e1e; padding: 15px 0; position: fixed; bottom: 0; width: 100%; border-top: 1px solid #333; z-index: 999; }
+    .nav-item { color: #aaa; font-size: 0.9em; text-align: center; }
+    .nav-item.active { color: #FFD700; }
+    .nav-icon { width: 24px; height: 24px; margin-bottom: 4px; }
+    .nav-item a { color: inherit; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Ver mi plan</h1>
+  </div>
+
+  <!-- Plan Semanal -->
+  <div class="plan-container">
+    <div class="plan-header">
+      <h2>Plan de la semana 36 – 39</h2>
+      <p>Semanas del 2/09 al 30/09</p>
+    </div>
+
+    <div class="plan-week">
+      <div class="day-header">Lun</div>
+      <div class="day-header">Mar</div>
+      <div class="day-header">Mié</div>
+      <div class="day-header">Jue</div>
+      <div class="day-header">Vie</div>
+      <div class="day-header">Sáb</div>
+      <div class="day-header">Dom</div>
+
+      <div class="day-content">
+        <p><strong>Tipo:</strong> Descanso</p>
+        <p><strong>Objetivo:</strong> Recuperación</p>
+      </div>
+      <div class="day-content">
+        <p><strong>Tipo:</strong> Series</p>
+        <p><strong>Objetivo:</strong> 6×1’ R3/1’ suave</p>
+        <p><strong>Volumen:</strong> 6 km</p>
+      </div>
+      <div class="day-content">
+        <p><strong>Tipo:</strong> Tirada larga</p>
+        <p><strong>Objetivo:</strong> 20 km R2</p>
+        <p><strong>Volumen:</strong> 20 km</p>
+      </div>
+      <div class="day-content">
+        <p><strong>Tipo:</strong> Carrera</p>
+        <p><strong>Objetivo:</strong> 10K</p>
+        <p><strong>Volumen:</strong> 10 km</p>
+      </div>
+      <div class="day-content">
+        <p><strong>Tipo:</strong> Objetivo</p>
+        <p><strong>Objetivo:</strong> 8K R2 + 3×100m técnica</p>
+        <p><strong>Volumen:</strong> 8 km</p>
+      </div>
+      <div class="day-content">
+        <p><strong>Tipo:</strong> Lesión</p>
+        <p><strong>Objetivo:</strong> Actividad ligera</p>
+        <p><strong>Volumen:</strong> 5 km</p>
+      </div>
+      <div class="day-content">
+        <p><strong>Tipo:</strong> Descanso</p>
+        <p><strong>Objetivo:</strong> Recuperación</p>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span class="tirada-larga">Tirada larga</span>
+      <span class="series">Series</span>
+      <span class="carrera">Carrera</span>
+      <span class="descanso">Descanso</span>
+      <span class="lesion">Lesión</span>
+      <span class="objetivo">Objetivo</span>
+    </div>
+  </div>
+
+  <!-- Barra de navegación -->
+  <div class="bottom-nav">
+    <a href="inicio.html" class="nav-item active">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" class="nav-icon">
+      Inicio
+    </a>
+    <a href="calendar.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/calendar.png" class="nav-icon">
+      Calendario
+    </a>
+    <a href="perfil.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/user.png" class="nav-icon">
+      Perfil
+    </a>
+  </div>
+
+</body>
+</html>

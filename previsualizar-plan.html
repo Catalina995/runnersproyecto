@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Previsualizar plan</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: white; }
+    .header { background-color: #1e1e1e; padding: 18px 20px; display: flex; align-items: center; }
+    .back-btn { font-size: 1.4em; color: #FFD700; background: none; border: none; cursor: pointer; margin-right: 10px; }
+    .page-title { font-size: 1.2em; }
+    .plan-day { background-color: #1e1e1e; margin: 20px; padding: 16px; border-radius: 12px; border-left: 4px solid #FFD700; }
+    .day-header { color: #FFD700; font-weight: 600; font-size: 1.1em; margin-bottom: 12px; }
+    .day-content { color: white; font-size: 0.95em; line-height: 1.6; }
+    .ritmo { background-color: #2d2d2d; padding: 6px; border-radius: 4px; margin-top: 8px; color: #FFD700; font-size: 0.9em; }
+    .btn-publish { 
+      background-color: #34A853; 
+      color: white; 
+      border: none; 
+      padding: 12px; 
+      border-radius: 8px; 
+      font-weight: bold; 
+      font-size: 1em; 
+      cursor: pointer; 
+      display: block; 
+      width: calc(100% - 40px); 
+      margin: 20px auto; 
+      text-align: center; 
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Previsualizar plan</h1>
+  </div>
+
+  <!-- Vista previa -->
+  <div class="plan-day">
+    <div class="day-header">Lunes 9/09</div>
+    <div class="day-content">
+      <p>Rodaje controlado (R2)</p>
+      <p>6K + 3×100m técnica</p>
+      <div class="ritmo">R2: 5:53 min/km</div>
+    </div>
+  </div>
+
+  <div class="plan-day">
+    <div class="day-header">Martes 10/09</div>
+    <div class="day-content">
+      <p>Serie corta</p>
+      <p>6×400m R3 + 200m suave</p>
+      <div class="ritmo">R3: 4:48 min/km</div>
+    </div>
+  </div>
+
+  <div class="plan-day">
+    <div class="day-header">Jueves 12/09</div>
+    <div class="day-content">
+      <p>Tirada larga</p>
+      <p>12K R2</p>
+      <div class="ritmo">R2: 5:53 min/km</div>
+    </div>
+  </div>
+
+  <div class="plan-day">
+    <div class="day-header">Sábado 14/09</div>
+    <div class="day-content">
+      <p>Carrera</p>
+      <p>5K competitiva</p>
+      <div class="ritmo">R3: 4:48 min/km</div>
+    </div>
+  </div>
+
+  <button class="btn-publish" onclick="alert('✅ Plan publicado'); location.href='inicio.html';">Confirmar y publicar</button>
+
+</body>
+</html>

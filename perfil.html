@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Perfil</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: white; }
+    .header { background-color: #1e1e1e; padding: 18px 20px; display: flex; align-items: center; }
+    .back-btn { font-size: 1.4em; color: #FFD700; background: none; border: none; cursor: pointer; margin-right: 10px; }
+    .page-title { font-size: 1.2em; }
+    .profile-info { text-align: center; padding: 20px; }
+    .profile-pic { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #FFD700; margin-bottom: 10px; }
+    .group-tag { background-color: #FFD700; color: #121212; padding: 4px 10px; border-radius: 15px; font-size: 0.8em; font-weight: bold; }
+    .data-box { background-color: #1e1e1e; margin: 20px; padding: 16px; border-radius: 10px; }
+    .data-box label { display: block; font-size: 0.9em; color: #ccc; margin-bottom: 4px; }
+    .data-box span { color: white; }
+    .btn-edit { 
+      background-color: #FFD700; 
+      color: #121212; 
+      border: none; 
+      padding: 12px 20px; 
+      border-radius: 8px; 
+      font-weight: bold; 
+      font-size: 1em; 
+      cursor: pointer; 
+      display: block; 
+      margin: 20px auto; 
+      width: calc(100% - 40px); 
+      text-align: center; 
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Perfil</h1>
+  </div>
+
+  <!-- Información del usuario -->
+  <div class="profile-info">
+    <img src="https://ui-avatars.com/api/?name=Catalina+Manríquez&background=FFD700&color=121212" alt="Foto" class="profile-pic">
+    <h2 id="nombre-usuario">Catalina</h2>
+    <span class="group-tag">10K A</span>
+  </div>
+
+  <div class="data-box">
+    <label>Correo</label>
+    <span>cata.manriquez@email.com</span>
+  </div>
+
+  <div class="data-box">
+    <label>Meta personal</label>
+    <span id="meta-usuario">Completar 10K en octubre</span>
+  </div>
+
+  <div class="data-box">
+    <label>¿Aparecer en ranking?</label>
+    <span id="ranking-usuario">Sí</span>
+  </div>
+
+  <div class="data-box">
+    <label>¿Mostrar mi foto?</label>
+    <span id="foto-usuario">Sí</span>
+  </div>
+
+  <!-- Botón para editar perfil -->
+  <button class="btn-edit" onclick="location.href='editar-perfil.html'">Editar perfil</button>
+
+  <!-- Barra de navegación -->
+  <div class="bottom-nav">
+    <a href="inicio.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" class="nav-icon">
+      Inicio
+    </a>
+    <a href="calendario.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/calendar.png" class="nav-icon">
+      Calendario
+    </a>
+    <a href="perfil.html" class="nav-item active">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/user.png" class="nav-icon">
+      Perfil
+    </a>
+  </div>
+
+  <!-- Script para cargar datos desde localStorage -->
+  <script>
+    // Cargar datos del perfil
+    window.onload = function() {
+      const perfil = JSON.parse(localStorage.getItem('perfil')) || {};
+      
+      document.getElementById('nombre-usuario').textContent = perfil.nombre || 'Catalina';
+      document.getElementById('meta-usuario').textContent = perfil.meta || 'Sin meta definida';
+      document.getElementById('ranking-usuario').textContent = perfil.ranking === 'si' ? 'Sí' : 'No';
+      document.getElementById('foto-usuario').textContent = perfil.foto === 'si' ? 'Sí' : 'No';
+    };
+
+    // Mostrar "Gestión de usuarios" solo si es administrador
+    const usuario = {
+      nombre: "Catalina",
+      grupo: "10K A",
+      rol: "administrador", // Cambia a "corredor" o "profesor" para probar
+      stravaConectado: true
+    };
+
+    if (usuario.rol === "administrador") {
+      const btn = document.createElement("button");
+      btn.className = "btn-edit";
+      btn.style.backgroundColor = "#4285F4"; // Azul profesional
+      btn.textContent = "Gestión de usuarios";
+      btn.onclick = () => location.href = "gestion-usuarios.html";
+      
+      const editarBtn = document.querySelector(".btn-edit[onclick*='editar']");
+      if (editarBtn) {
+        document.body.insertBefore(btn, editarBtn);
+      }
+    }
+  </script>
+
+</body>
+</html>

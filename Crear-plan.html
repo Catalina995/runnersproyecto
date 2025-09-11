@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Crear plan</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: white; }
+    .header { background-color: #1e1e1e; padding: 18px 20px; display: flex; align-items: center; }
+    .back-btn { font-size: 1.4em; color: #FFD700; background: none; border: none; cursor: pointer; margin-right: 10px; }
+    .page-title { font-size: 1.2em; }
+    .form-container { padding: 20px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; color: #ccc; margin-bottom: 6px; }
+    .form-group select, .form-group input[type="date"] { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background-color: #1e1e1e; color: white; }
+    .btn-actions { display: flex; gap: 10px; margin-top: 20px; }
+    .btn-cancel { background-color: #333; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 1em; cursor: pointer; flex: 1; }
+    .btn-next { background-color: #FFD700; color: #121212; font-weight: bold; border: none; padding: 12px; border-radius: 8px; font-size: 1em; cursor: pointer; flex: 2; }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Crear nuevo plan</h1>
+  </div>
+
+  <!-- Formulario principal -->
+  <div class="form-container">
+    <div class="form-group">
+      <label>Grupo</label>
+      <select id="grupo">
+        <option value="">Selecciona un grupo</option>
+        <option value="10K A">10K A</option>
+        <option value="10K B">10K B</option>
+        <option value="21K A">21K A</option>
+        <option value="21K B">21K B</option>
+        <option value="42K A">42K A</option>
+        <option value="42K B">42K B</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Semana de inicio</label>
+      <input type="date" id="semana-inicio">
+    </div>
+
+    <div class="form-group">
+      <label>Semana de fin</label>
+      <input type="date" id="semana-fin">
+    </div>
+
+    <div class="btn-actions">
+      <button class="btn-cancel" onclick="location.href='admin.html'">Cancelar</button>
+      <button class="btn-next" onclick="location.href='crear-plan-dias.html'">Siguiente → Elegir días</button>
+    </div>
+  </div>
+
+</body>
+</html>

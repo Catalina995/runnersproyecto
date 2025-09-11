@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Editar perfil</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: white; }
+    .header { background-color: #1e1e1e; padding: 18px 20px; display: flex; align-items: center; }
+    .back-btn { font-size: 1.4em; color: #FFD700; background: none; border: none; cursor: pointer; margin-right: 10px; }
+    .page-title { font-size: 1.2em; }
+    .form-container { padding: 20px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; color: #ccc; margin-bottom: 6px; }
+    .form-group input, .form-group select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background-color: #1e1e1e; color: white; }
+    .btn-save { 
+      background-color: #FFD700; 
+      color: #121212; 
+      border: none; 
+      padding: 12px; 
+      border-radius: 8px; 
+      font-weight: bold; 
+      font-size: 1em; 
+      cursor: pointer; 
+      display: block; 
+      width: 100%; 
+      margin-top: 20px; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Editar perfil</h1>
+  </div>
+
+  <div class="form-container">
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" id="nombre" placeholder="Tu nombre">
+    </div>
+    <div class="form-group">
+      <label>Meta personal</label>
+      <input type="text" id="meta" placeholder="Ej: Completar 10K en octubre">
+    </div>
+    <div class="form-group">
+      <label>¿Aparecer en ranking?</label>
+      <select id="ranking">
+        <option value="si">Sí</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>¿Mostrar mi foto?</label>
+      <select id="foto">
+        <option value="si">Sí</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+    <button class="btn-save" onclick="guardarPerfil()">Guardar cambios</button>
+  </div>
+
+  <script>
+    window.onload = function() {
+      const perfil = JSON.parse(localStorage.getItem('perfil')) || {};
+      if (perfil.nombre) document.getElementById('nombre').value = perfil.nombre;
+      if (perfil.meta) document.getElementById('meta').value = perfil.meta;
+      if (perfil.ranking) document.getElementById('ranking').value = perfil.ranking;
+      if (perfil.foto) document.getElementById('foto').value = perfil.foto;
+    };
+
+    function guardarPerfil() {
+      const perfil = {
+        nombre: document.getElementById('nombre').value,
+        meta: document.getElementById('meta').value,
+        ranking: document.getElementById('ranking').value,
+        foto: document.getElementById('foto').value
+      };
+      localStorage.setItem('perfil', JSON.stringify(perfil));
+      alert('✅ Cambios guardados');
+      history.back();
+    }
+  </script>
+
+</body>
+</html>

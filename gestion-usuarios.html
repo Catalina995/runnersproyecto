@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Gestión de usuarios</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: white; min-height: 100vh; }
+    .header { background-color: #1e1e1e; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .back-btn { font-size: 1.4em; color: #FFD700; background: none; border: none; cursor: pointer; }
+    .page-title { font-size: 1.2em; }
+    .users-container { padding: 20px; }
+    .user-item { background-color: #1e1e1e; padding: 16px; margin-bottom: 12px; border-radius: 8px; }
+    .user-info { display: flex; justify-content: space-between; align-items: center; }
+    .user-name { font-weight: 600; }
+    .user-meta { color: #ccc; font-size: 0.9em; margin-top: 4px; }
+    .actions { display: flex; gap: 8px; }
+    .btn { padding: 6px 12px; border-radius: 4px; font-size: 0.9em; cursor: pointer; }
+    .btn-aprobar { background-color: #34A853; color: white; border: none; }
+    .btn-rechazar { background-color: #EA4335; color: white; border: none; }
+    .btn-cambiar-rol { background-color: #4285F4; color: white; border: none; }
+    .estado { padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; }
+    .estado-pendiente { background-color: #FBBC05; color: #121212; }
+    .estado-activo { background-color: #34A853; color: white; }
+    .estado-suspendido { background-color: #EA4335; color: white; }
+    .bottom-nav { display: flex; justify-content: space-around; background-color: #1e1e1e; padding: 15px 0; position: fixed; bottom: 0; width: 100%; border-top: 1px solid #333; z-index: 999; }
+    .nav-item { color: #aaa; font-size: 0.9em; text-align: center; }
+    .nav-item.active { color: #FFD700; }
+    .nav-icon { width: 24px; height: 24px; margin-bottom: 4px; }
+    .nav-item a { color: inherit; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Gestión de usuarios</h1>
+  </div>
+
+  <!-- Lista de usuarios -->
+  <div class="users-container">
+
+    <!-- Usuario: Pendiente -->
+    <div class="user-item">
+      <div class="user-info">
+        <div>
+          <div class="user-name">Juan Pérez</div>
+          <div class="user-meta">juan@email.com • Grupo: 10K B • Creado: 01/09/2024</div>
+        </div>
+        <span class="estado estado-pendiente">Pendiente</span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-aprobar" onclick="alert('✅ Usuario aprobado')">Aprobar</button>
+        <button class="btn btn-rechazar" onclick="alert('❌ Usuario rechazado')">Rechazar</button>
+        <button class="btn btn-cambiar-rol" disabled>Cambiar rol</button>
+      </div>
+    </div>
+
+    <!-- Usuario: Activo -->
+    <div class="user-item">
+      <div class="user-info">
+        <div>
+          <div class="user-name">Ana López</div>
+          <div class="user-meta">ana@email.com • Grupo: 21K A • Rol: Corredor</div>
+        </div>
+        <span class="estado estado-activo">Activo</span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-rechazar" onclick="alert('⚠️ ¿Estás seguro?')">Suspender</button>
+        <button class="btn btn-cambiar-rol" onclick="cambiarRol('Ana López')">Cambiar rol</button>
+      </div>
+    </div>
+
+    <!-- Usuario: Suspendido -->
+    <div class="user-item">
+      <div class="user-info">
+        <div>
+          <div class="user-name">Diego Muñoz</div>
+          <div class="user-meta">diego@email.com • Grupo: 42K A • Rol: Corredor</div>
+        </div>
+        <span class="estado estado-suspendido">Suspendido</span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-aprobar" onclick="alert('✅ Usuario reactivado')">Reactivar</button>
+        <button class="btn btn-rechazar" onclick="alert('🗑️ Usuario eliminado')">Eliminar</button>
+        <button class="btn btn-cambiar-rol" onclick="cambiarRol('Diego Muñoz')">Cambiar rol</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Barra de navegación -->
+  <div class="bottom-nav">
+    <a href="inicio.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" class="nav-icon">
+      Inicio
+    </a>
+    <a href="calendario.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/calendar.png" class="nav-icon">
+      Calendario
+    </a>
+    <a href="perfil.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/user.png" class="nav-icon">
+      Perfil
+    </a>
+  </div>
+
+  <!-- Modal para cambiar rol -->
+  <div id="modal-rol" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+    <div style="background-color: #1e1e1e; padding: 20px; border-radius: 12px; width: 90%; max-width: 400px;">
+      <h3 style="color: #FFD700;">Cambiar rol</h3>
+      <p><strong>Usuario:</strong> <span id="nombre-usuario"></span></p>
+      <select id="nuevo-rol" style="width: 100%; padding: 10px; margin: 10px 0; background-color: #121212; color: white; border: 1px solid #333; border-radius: 6px;">
+        <option value="corredor">Corredor</option>
+        <option value="profesor">Profesor</option>
+        <option value="administrador">Administrador</option>
+      </select>
+      <div style="display: flex; gap: 10px; margin-top: 15px;">
+        <button onclick="cerrarModal()" style="flex: 1; padding: 10px; background-color: #333; color: white; border: none; border-radius: 6px;">Cancelar</button>
+        <button onclick="guardarCambioRol()" style="flex: 1; padding: 10px; background-color: #FFD700; color: #121212; border: none; border-radius: 6px; font-weight: bold;">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let usuarioSeleccionado = null;
+
+    function cambiarRol(nombre) {
+      usuarioSeleccionado = nombre;
+      document.getElementById("nombre-usuario").textContent = nombre;
+      document.getElementById("modal-rol").style.display = "flex";
+    }
+
+    function cerrarModal() {
+      document.getElementById("modal-rol").style.display = "none";
+      usuarioSeleccionado = null;
+    }
+
+    function guardarCambioRol() {
+      const nuevoRol = document.getElementById("nuevo-rol").value;
+      alert(`✅ Rol cambiado: ${usuarioSeleccionado} → ${nuevoRol}`);
+      cerrarModal();
+    }
+  </script>
+
+</body>
+</html>

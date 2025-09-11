@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Mi grupo</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: white; min-height: 100vh; }
+    .header { background-color: #1e1e1e; padding: 18px 20px; display: flex; align-items: center; }
+    .back-btn { font-size: 1.4em; color: #FFD700; background: none; border: none; cursor: pointer; margin-right: 10px; }
+    .page-title { font-size: 1.2em; color: #FFD700; }
+    .group-info { background-color: #1e1e1e; margin: 20px; padding: 16px; border-radius: 12px; }
+    .group-name { font-size: 1.3em; color: #FFD700; margin-bottom: 6px; }
+    .group-profesor { color: white; margin: 4px 0; }
+    .group-sesion { color: #ccc; font-size: 0.9em; margin-top: 8px; }
+    .members-title { color: #FFD700; font-weight: 600; margin: 20px 20px 10px; }
+    .members-list { margin: 0 20px; }
+    .member-item { background-color: #2d2d2d; padding: 12px; margin-bottom: 8px; border-radius: 8px; }
+    .member-name { font-weight: 500; }
+    .member-meta { font-size: 0.85em; color: #ccc; }
+    .bottom-nav { display: flex; justify-content: space-around; background-color: #1e1e1e; padding: 15px 0; position: fixed; bottom: 0; width: 100%; border-top: 1px solid #333; }
+    .nav-item { color: #aaa; font-size: 0.9em; text-align: center; }
+    .nav-item.active { color: #FFD700; }
+    .nav-icon { width: 24px; height: 24px; margin-bottom: 4px; }
+    .nav-item a { color: inherit; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Mi grupo</h1>
+  </div>
+
+  <!-- Información del grupo -->
+  <div class="group-info">
+    <div class="group-name">10K A</div>
+    <div class="group-profesor">Profesor: Emilio Soto</div>
+    <div class="group-sesion">Próxima sesión: Martes 10/09 – 8K R2 + 3×100m técnica</div>
+  </div>
+
+  <!-- Miembros -->
+  <div class="members-title">Miembros del grupo (12)</div>
+  <div class="members-list">
+    <div class="member-item">
+      <div class="member-name">Catalina Manríquez</div>
+      <div class="member-meta">Meta: Completar 10K en octubre</div>
+    </div>
+    <div class="member-item">
+      <div class="member-name">Emilio Soto</div>
+      <div class="member-meta">Profesor • Meta: 3 sesiones semanales</div>
+    </div>
+    <div class="member-item">
+      <div class="member-name">Sofía Reyes</div>
+      <div class="member-meta">Meta: Mejorar ritmo R2</div>
+    </div>
+    <div class="member-item">
+      <div class="member-name">Diego Muñoz</div>
+      <div class="member-meta">Meta: Correr 10K sin parar</div>
+    </div>
+    <div class="member-item">
+      <div class="member-name">Valentina Castro</div>
+      <div class="member-meta">Meta: Tirada larga 12K</div>
+    </div>
+  </div>
+
+  <!-- Barra de navegación -->
+  <div class="bottom-nav">
+    <a href="inicio.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" class="nav-icon">
+      Inicio
+    </a>
+    <a href="ver-mi-plan.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/calendar.png" class="nav-icon">
+      Calendario
+    </a>
+    <a href="feed.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/news.png" class="nav-icon">
+      Feed
+    </a>
+    <a href="perfil.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/user.png" class="nav-icon">
+      Perfil
+    </a>
+  </div>
+
+</body>
+</html>

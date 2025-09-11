@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinerunners - Panel Admin</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: white; min-height: 100vh; }
+    .header { background-color: #1e1e1e; padding: 18px 20px; display: flex; align-items: center; }
+    .back-btn { font-size: 1.4em; color: #FFD700; background: none; border: none; cursor: pointer; margin-right: 10px; }
+    .page-title { font-size: 1.2em; }
+    .admin-menu { padding: 20px; }
+    .card-link { 
+      display: block; 
+      background-color: #1e1e1e; 
+      padding: 20px; 
+      border-radius: 12px; 
+      text-align: center; 
+      color: white; 
+      text-decoration: none; 
+      margin-bottom: 15px; 
+      transition: transform 0.2s; 
+    }
+    .card-link:hover { transform: scale(1.02); }
+    .card-link div { font-size: 1.8em; margin-bottom: 8px; }
+    .card-link strong { display: block; color: #FFD700; font-size: 1.1em; margin: 6px 0; }
+    .card-link p { color: #ccc; font-size: 0.9em; }
+    .bottom-nav { display: flex; justify-content: space-around; background-color: #1e1e1e; padding: 15px 0; position: fixed; bottom: 0; width: 100%; border-top: 1px solid #333; z-index: 999; }
+    .nav-item { color: #aaa; font-size: 0.9em; text-align: center; }
+    .nav-item.active { color: #FFD700; }
+    .nav-icon { width: 24px; height: 24px; margin-bottom: 4px; }
+    .nav-item a { color: inherit; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <div class="header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1 class="page-title">Panel de Administración</h1>
+  </div>
+
+  <!-- Menú Admin -->
+  <div class="admin-menu">
+
+    <!-- Gestión de usuarios (visible para todos, texto cambia según rol) -->
+    <a href="gestion-usuarios.html" class="card-link" id="gestion-usuarios-link">
+      <div>👥</div>
+      <strong>Gestión de usuarios</strong>
+      <p>Aprobar, rechazar, cambiar rol</p>
+    </a>
+
+    <!-- Crear grupos -->
+    <a href="crear-grupos.html" class="card-link">
+      <div>📋</div>
+      <strong>Crear grupos</strong>
+      <p>10K A/B, 21K A/B, 42K A/B</p>
+    </a>
+
+    <!-- Crear plan -->
+    <a href="crear-plan.html" class="card-link">
+      <div>📅</div>
+      <strong>Crear plan semanal</strong>
+      <p>Por grupo, semanas, días, objetivos</p>
+    </a>
+
+    <!-- Ritmos por usuario -->
+    <a href="ritmos-usuario.html" class="card-link">
+      <div>📊</div>
+      <strong>Ritmos por usuario</strong>
+      <p>REG, R1, R2, R3, UL, CA, CAN</p>
+    </a>
+
+  </div>
+
+  <!-- Barra de navegación -->
+  <div class="bottom-nav">
+    <a href="inicio.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" class="nav-icon">
+      Inicio
+    </a>
+    <a href="calendario.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/calendar.png" class="nav-icon">
+      Calendario
+    </a>
+    <a href="perfil.html" class="nav-item">
+      <img src="https://img.icons8.com/ios-filled/50/FFFFFF/user.png" class="nav-icon">
+      Perfil
+    </a>
+  </div>
+
+  <script>
+    // Simulación del usuario actual
+    const usuario = {
+      nombre: "Catalina",
+      grupo: "10K A",
+      rol: "profesor" // Puedes cambiar a "administrador" para probar
+    };
+
+    // Obtener el enlace de gestión de usuarios
+    const gestionLink = document.getElementById("gestion-usuarios-link");
+
+    // Si es PROFESOR, cambiar texto a solo lectura
+    if (usuario.rol === "profesor") {
+      gestionLink.querySelector("strong").textContent = "Gestión usuarios";
+      gestionLink.querySelector("p").textContent = "Solo lectura — Ver lista de corredores";
+      gestionLink.style.opacity = "0.8";
+    }
+
+    // Si es ADMINISTRADOR, mantener texto original
+    if (usuario.rol === "administrador") {
+      gestionLink.querySelector("strong").textContent = "Gestión de usuarios";
+      gestionLink.querySelector("p").textContent = "Aprobar, rechazar, cambiar rol";
+    }
+  </script>
+
+</body>
+</html>
